@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 14, 2022 lúc 09:46 AM
+-- Thời gian đã tạo: Th12 19, 2022 lúc 04:28 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -69,6 +69,23 @@ INSERT INTO `customer` (`id`, `password`, `full_name`, `address`, `city`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `hibernate_sequence`
+--
+
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `hibernate_sequence`
+--
+
+INSERT INTO `hibernate_sequence` (`next_val`) VALUES
+(1);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `ordered`
 --
 
@@ -101,6 +118,7 @@ INSERT INTO `ordered` (`id`, `customer_id`, `date_created`, `total`, `note`) VAL
 --
 
 CREATE TABLE `ordered_detail` (
+  `id` int(10) UNSIGNED NOT NULL,
   `ordered_id` int(10) UNSIGNED NOT NULL,
   `vegetable_id` int(10) NOT NULL,
   `quantity` tinyint(4) NOT NULL,
@@ -111,21 +129,21 @@ CREATE TABLE `ordered_detail` (
 -- Đang đổ dữ liệu cho bảng `ordered_detail`
 --
 
-INSERT INTO `ordered_detail` (`ordered_id`, `vegetable_id`, `quantity`, `price`) VALUES
-(0, 1, 1, 30000),
-(1, 2, 1, 35000),
-(1, 3, 1, 150000),
-(1, 4, 1, 80000),
-(2, 5, 1, 35000),
-(2, 7, 2, 30000),
-(3, 6, 2, 80000),
-(4, 7, 1, 15000),
-(5, 6, 3, 120000),
-(5, 7, 2, 30000),
-(6, 4, 1, 80000),
-(6, 7, 1, 15000),
-(7, 1, 2, 60000),
-(7, 6, 2, 80000);
+INSERT INTO `ordered_detail` (`id`, `ordered_id`, `vegetable_id`, `quantity`, `price`) VALUES
+(0, 0, 1, 1, 30000),
+(1, 1, 2, 1, 35000),
+(2, 1, 3, 1, 150000),
+(3, 1, 4, 1, 80000),
+(4, 2, 5, 1, 35000),
+(5, 2, 7, 2, 30000),
+(6, 3, 6, 2, 80000),
+(7, 4, 7, 1, 15000),
+(8, 5, 6, 3, 120000),
+(9, 5, 7, 2, 30000),
+(10, 6, 4, 1, 80000),
+(11, 6, 7, 1, 15000),
+(12, 7, 1, 2, 60000),
+(13, 7, 6, 2, 80000);
 
 -- --------------------------------------------------------
 
@@ -183,8 +201,9 @@ ALTER TABLE `ordered`
 -- Chỉ mục cho bảng `ordered_detail`
 --
 ALTER TABLE `ordered_detail`
-  ADD PRIMARY KEY (`ordered_id`,`vegetable_id`),
-  ADD KEY `ordered_detail_fk_vegetable` (`vegetable_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_ordered_detail_vs_vegetable` (`vegetable_id`),
+  ADD KEY `fk_ordered_detail_vs_ordered` (`ordered_id`);
 
 --
 -- Chỉ mục cho bảng `vegetable`
@@ -207,14 +226,8 @@ ALTER TABLE `ordered`
 -- Các ràng buộc cho bảng `ordered_detail`
 --
 ALTER TABLE `ordered_detail`
-  ADD CONSTRAINT `ordered_detail_fk_ordered` FOREIGN KEY (`ordered_id`) REFERENCES `ordered` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `ordered_detail_fk_vegetable` FOREIGN KEY (`vegetable_id`) REFERENCES `vegetable` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Các ràng buộc cho bảng `vegetable`
---
-ALTER TABLE `vegetable`
-  ADD CONSTRAINT `vegetable_fk_category` FOREIGN KEY (`catagory_id`) REFERENCES `category` (`id`) ON DELETE NO ACTION;
+  ADD CONSTRAINT `fk_ordered_detail_vs_ordered` FOREIGN KEY (`ordered_id`) REFERENCES `ordered` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_ordered_detail_vs_vegetable` FOREIGN KEY (`vegetable_id`) REFERENCES `vegetable` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
