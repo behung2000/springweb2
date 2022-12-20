@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
     <div>
-        <p>Search</p>
+        <h1><b>Search</b></h1>
         <form method="get" action="/v1/shop/vegetables">
-            Filter: <input type="text" name="name" id="name" size="50" th:value="${name}" required />
+            Filter name:        <input type="text" name="name" id="name" size="50" th:value="${name}" value=""/>
+            &nbsp;
+            Filter bán chạy:    <input type="radio" name="banChay" id="banChay" size="50" th:value="true"/>
+            &nbsp;
+            Filter category:    <select id="categoryId" name="categoryId" th:value="${categoryId}">
+                                    <option th:each="i : ${categories}" th:value="${i.id}" th:utext="${i.name}" />
+                                </select>
             &nbsp;
             <input type="submit" value="Search" />
             &nbsp;
@@ -16,11 +22,13 @@
         </form>
         <script type="text/javascript">
             function clearSearch() {
-                window.location = "[[@{/}]]";
+                window.location = "[[@{/v1/shop/vegetables}]]";
             }
         </script>
     </div>
-    <div>List vegetable</div>
+    <div>
+        <h1>List vegetable</h1>
+    </div>
     <div>
         <table>
             <tr>
