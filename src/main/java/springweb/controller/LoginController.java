@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import springweb.requests.Login;
 import springweb.services.CustomerService;
@@ -23,21 +24,12 @@ public class LoginController {
         return customerId;
     }
 
-    /*
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public String indexHomeShopLogin(Model model) {
-        model.addAttribute("title", "Welcome");
-        model.addAttribute("message", "This is welcome page!");
-        return "index";
-    }
-     */
-
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public String methodGetLogin() {
         return "login";
     }
 
-    @RequestMapping("/login/action")
+    @GetMapping("/login/action")
     public String methodPostLogin(Model model, @Param("fullName") String fullName, @Param("password") String password) {
         model.addAttribute("fullName", fullName);
         model.addAttribute("password", password);

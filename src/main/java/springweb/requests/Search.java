@@ -18,6 +18,12 @@ public class Search {
     @JsonProperty("name")
     private String name;
 
+    public void initInput() {
+        if (banChay == null) {
+            banChay = false;
+        }
+    }
+
     public Integer checkInput() {
         if (banChay == true) {
             if (categoryId != null) {

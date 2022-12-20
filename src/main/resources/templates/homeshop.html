@@ -5,25 +5,40 @@
     <title>Title</title>
 </head>
 <body>
-<table>
+    <div>
+        <p>Search</p>
+        <form method="get" action="/v1/shop/vegetables">
+            Filter: <input type="text" name="name" id="name" size="50" th:value="${name}" required />
+            &nbsp;
+            <input type="submit" value="Search" />
+            &nbsp;
+            <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+        </form>
+        <script type="text/javascript">
+            function clearSearch() {
+                window.location = "[[@{/}]]";
+            }
+        </script>
+    </div>
     <div>List vegetable</div>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Unit</th>
-            <th>Amount</th>
-            <th>Price</th>
-            <th>Edit</th>
-        </tr>
-        <tr th:each ="row, state: ${data}">
-            <td th:utext="${state.count}">...</td>
-            <td th:utext="${row.name}">...</td>
-            <td th:utext="${row.unit}">...</td>
-            <td th:utext="${row.amount}">...</td>
-            <td th:utext="${row.price}">...</td>
-        </tr>
-    </table>
-</table>
+    <div>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Unit</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Edit</th>
+            </tr>
+            <tr th:each ="row, state: ${data}">
+                <td th:utext="${state.count}">...</td>
+                <td th:utext="${row.name}">...</td>
+                <td th:utext="${row.unit}">...</td>
+                <td th:utext="${row.amount}">...</td>
+                <td th:utext="${row.price}">...</td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
