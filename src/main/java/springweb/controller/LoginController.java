@@ -5,21 +5,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import springweb.dto.Login;
-import springweb.service.CustomerService;
+import springweb.requests.Login;
+import springweb.services.CustomerService;
 
 @Controller
 @RequestMapping("v1/shop")
 public class LoginController {
-    private static boolean login = false;
+    private static Integer customerId = null;
     private CustomerService service;
 
     public LoginController(CustomerService service) {
         this.service = service;
     }
 
-    public static boolean getLogin() {
-        return login;
+    public static Integer getLogin() {
+        return customerId;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)

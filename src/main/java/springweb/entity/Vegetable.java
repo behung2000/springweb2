@@ -32,6 +32,6 @@ public class Vegetable {
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "catagoryId")
-    private Integer catagoryId;
+    @Column(name = "categoryId")
+    private Integer categoryId;
 }

@@ -2,7 +2,7 @@ package springweb.controller;
 
 import springweb.dto.VegetableDto;
 
-import springweb.service.VegetableService;
+import springweb.services.VegetableService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

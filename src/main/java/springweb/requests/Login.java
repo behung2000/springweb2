@@ -1,4 +1,4 @@
-package springweb.dto;
+package springweb.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.Gson;
