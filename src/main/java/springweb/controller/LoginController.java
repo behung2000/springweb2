@@ -1,13 +1,14 @@
 package springweb.controller;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import springweb.requests.Login;
 import springweb.services.CustomerService;
 
+@Slf4j
 @Controller
 @RequestMapping("v1/shop")
 public class LoginController {
@@ -22,20 +23,31 @@ public class LoginController {
         return customerId;
     }
 
+    /*
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String indexHomeShopLogin(Model model) {
         model.addAttribute("title", "Welcome");
         model.addAttribute("message", "This is welcome page!");
         return "index";
     }
+     */
 
-    @GetMapping("/login")
+    @RequestMapping("/login")
     public String methodGetLogin() {
         return "login";
     }
 
-    @GetMapping("/login/action")
-    public String methodPostLogin(Login login) {
-        return "Susscess";
+    @RequestMapping("/login/action")
+    public String methodPostLogin(Model model, @Param("fullName") String fullName, @Param("password") String password) {
+        model.addAttribute("fullName", fullName);
+        model.addAttribute("password", password);
+        Login login = Login.builder().fullName(fullName).password(password).build();
+        log.info(login.toString());
+        Integer id = service.checkLogin(login);
+        if (id != null) {
+            customerId = id;
+            return "redirect:/v1/shop/vegetables";
+        }
+        return "loginfail";
     }
 }

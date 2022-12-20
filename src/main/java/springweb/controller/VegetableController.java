@@ -19,22 +19,13 @@ public class VegetableController {
     public VegetableController(VegetableService service) {
         this.service = service;
     }
-    
-    @GetMapping("/index")
-    public @ResponseBody List<VegetableDto> index(Model m)
-    {
-        return  service.findAll();
-        //m.addAttribute("data", list);
-        //return "home";
-        
-    }
 
-    @GetMapping("/all")
+    @GetMapping("")
     public String getAll(Model m)
     {
         List<VegetableDto> list = service.findAll();
         m.addAttribute("data", list);
-        return "home";
+        return "homeshop";
         
     }
     

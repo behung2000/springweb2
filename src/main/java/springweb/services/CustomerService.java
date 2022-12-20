@@ -20,12 +20,12 @@ public class CustomerService {
      * @param login
      * @return boolean
      */
-    public boolean checkLogin(final Login login) {
+    public Integer checkLogin(final Login login) {
         Customer customer = customerRepository.findByFullNameAndPassword(login.getFullName(), login.getPassword()).orElse(null);
         if (customer == null) {
-            return false;
+            return null;
         }
-        return true;
+        return customer.getId();
     }
 
     /**
