@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 19, 2022 lúc 04:28 AM
+-- Thời gian đã tạo: Th12 20, 2022 lúc 07:43 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -153,7 +153,7 @@ INSERT INTO `ordered_detail` (`id`, `ordered_id`, `vegetable_id`, `quantity`, `p
 
 CREATE TABLE `vegetable` (
   `id` int(10) NOT NULL,
-  `catagory_id` int(10) NOT NULL,
+  `category_id` int(10) NOT NULL,
   `name` varchar(30) NOT NULL,
   `unit` varchar(20) NOT NULL,
   `amount` int(10) NOT NULL,
@@ -165,7 +165,7 @@ CREATE TABLE `vegetable` (
 -- Đang đổ dữ liệu cho bảng `vegetable`
 --
 
-INSERT INTO `vegetable` (`id`, `catagory_id`, `name`, `unit`, `amount`, `image`, `price`) VALUES
+INSERT INTO `vegetable` (`id`, `category_id`, `name`, `unit`, `amount`, `image`, `price`) VALUES
 (1, 1, 'Tomato', 'kg', 98, 'images/tomato.jpg', 30000),
 (2, 1, 'potato', 'kg', 150, 'images/potato.jpg', 35000),
 (3, 1, 'Apple', 'bag', 50, 'images/apple.jpg', 150000),
@@ -210,7 +210,7 @@ ALTER TABLE `ordered_detail`
 --
 ALTER TABLE `vegetable`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `vegetable_fk_category` (`catagory_id`);
+  ADD KEY `vegetable_fk_category` (`category_id`);
 
 --
 -- Các ràng buộc cho các bảng đã đổ
