@@ -30,10 +30,9 @@ public class LoginController {
     }
 
     @GetMapping("/login/action")
-    public String methodPostLogin(Model model, @Param("fullName") String fullName, @Param("password") String password) {
-        model.addAttribute("fullName", fullName);
-        model.addAttribute("password", password);
-        Login login = Login.builder().fullName(fullName).password(password).build();
+    public String methodPostLogin(Model model, Login login) {
+        model.addAttribute("fullName", login.getFullName());
+        model.addAttribute("password", login.getPassword());
         log.info(login.toString());
         Integer id = service.checkLogin(login);
         if (id != null) {
