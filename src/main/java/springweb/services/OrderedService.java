@@ -48,6 +48,10 @@ public class OrderedService {
         return orderDto;
     }
 
+    /**
+     * Update amount vegetable
+     * @param orderDetailDtoList
+     */
     private void updateVegetable(List<OrderDetailDto> orderDetailDtoList) {
         for (OrderDetailDto orderDetailDto : orderDetailDtoList) {
             Vegetable vegetable = vegetableRepository.findById(orderDetailDto.getVegetableId()).get();

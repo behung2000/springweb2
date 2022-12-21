@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 21, 2022 lúc 07:09 AM
+-- Thời gian đã tạo: Th12 21, 2022 lúc 02:10 PM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -82,7 +82,7 @@ CREATE TABLE `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(11);
+(23);
 
 -- --------------------------------------------------------
 
@@ -110,7 +110,11 @@ INSERT INTO `ordered` (`id`, `customer_id`, `date_created`, `total`, `note`) VAL
 (4, 4, '2022-11-22', 0, ''),
 (5, 3, '2022-11-22', 150000, ''),
 (6, 1, '2022-11-22', 95000, ''),
-(7, 4, '2022-11-23', 140000, '');
+(7, 4, '2022-11-23', 140000, ''),
+(14, 10, '2022-12-21', 65000, ''),
+(17, 10, '2022-12-21', 30000, ''),
+(19, 10, '2022-12-21', 30000, ''),
+(21, 10, '2022-12-21', 15000, '');
 
 -- --------------------------------------------------------
 
@@ -144,7 +148,12 @@ INSERT INTO `ordered_detail` (`id`, `ordered_id`, `vegetable_id`, `quantity`, `p
 (10, 6, 4, 1, 80000),
 (11, 6, 7, 1, 15000),
 (12, 7, 1, 2, 60000),
-(13, 7, 6, 2, 80000);
+(13, 7, 6, 2, 80000),
+(15, 14, 2, 1, 35000),
+(16, 14, 1, 1, 30000),
+(18, 17, 1, 1, 30000),
+(20, 19, 1, 1, 30000),
+(22, 21, 7, 1, 15000);
 
 -- --------------------------------------------------------
 
@@ -167,13 +176,13 @@ CREATE TABLE `vegetable` (
 --
 
 INSERT INTO `vegetable` (`id`, `category_id`, `name`, `unit`, `amount`, `image`, `price`) VALUES
-(1, 1, 'Tomato', 'kg', 98, 'images/tomato.jpg', 30000),
+(1, 1, 'Tomato', 'kg', 97, 'images/tomato.jpg', 30000),
 (2, 1, 'potato', 'kg', 150, 'images/potato.jpg', 35000),
 (3, 1, 'Apple', 'bag', 50, 'images/apple.jpg', 150000),
 (4, 1, 'Water melon', 'per fruit', 19, 'images/watermelon.jpg', 80000),
 (5, 2, ' broccoli', 'kg', 50, 'images/broccoli.jpg', 35000),
 (6, 2, 'celery', 'kg', 78, 'images/celery.jpg', 40000),
-(7, 1, ' spring onion', 'bunch', 49, 'images/springonion.jpg', 15000);
+(7, 1, ' spring onion', 'bunch', 48, 'images/springonion.jpg', 15000);
 
 --
 -- Chỉ mục cho các bảng đã đổ
