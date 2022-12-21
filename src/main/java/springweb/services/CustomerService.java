@@ -41,4 +41,11 @@ public class CustomerService {
         BeanUtils.copyProperties(saved, customerDto);
         return customerDto;
     }
+
+    public CustomerDto findById(Integer id) {
+        Customer customer = customerRepository.findById(id).get();
+        CustomerDto customerDto = CustomerDto.builder().build();
+        BeanUtils.copyProperties(customer, customerDto);
+        return customerDto;
+    }
 }

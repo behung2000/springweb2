@@ -5,8 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import springweb.dto.CustomerDto;
-import springweb.entity.Customer;
-import springweb.repository.CustomerRepository;
 import springweb.services.CustomerService;
 
 @Slf4j
@@ -22,6 +20,9 @@ public class CustomerController {
     @GetMapping("/register")
     public String register(Model m)
     {
+        if (LoginController.getLogin() != null) {
+            return "redirect:/v1/shop/customers/"+LoginController.getLogin();
+        }
         CustomerDto customerDto = new CustomerDto();
         m.addAttribute("customer", customerDto);
         return "CustomerRegister";
@@ -42,6 +43,13 @@ public class CustomerController {
         model.addAttribute("data", customerDto);
         return "RegisterSuccess";
     }
+
+    @GetMapping("/{id}")
+    public String findOne(Model model, @PathVariable Integer id) {
+        CustomerDto customerDto = service.findById(id);
+        return RegisterSuccess(model, customerDto);
+    }
+
 
     /*
     @PostMapping("/customer/update")

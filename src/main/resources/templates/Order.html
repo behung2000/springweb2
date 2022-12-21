@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home Shop</title>
+    <title>Title</title>
 </head>
 <body>
     <div class="vertical-menu">
@@ -10,17 +10,18 @@
         <a href="/v1/shop/login">Login</a>
         <a href="/v1/shop/customers/register">Register</a>
         <a href="/v1/shop/orders">Order</a>
+        <a href="/v1/shop/logout">logout</a>
     </div>
     <div>
         <h1><b>Search</b></h1>
-        <form method="get" action="/v1/shop/vegetables">
+        <form method="get" action="/v1/shop/orders">
             Filter name:        <input type="text" name="name" id="name" size="50" th:value="${name}" value="null"/>
             &nbsp;
             Filter bán chạy:    <input type="radio" name="banChay" id="banChay" size="50" th:value="true"/>
             &nbsp;
             Filter category:    <select id="categoryId" name="categoryId" th:value="${categoryId}">
-                                    <option th:each="i : ${categories}" th:value="${i.id}" th:utext="${i.name}" />
-                                </select>
+            <option th:each="i : ${categories}" th:value="${i.id}" th:utext="${i.name}" />
+        </select>
             &nbsp;
             <input type="submit" value="Search" />
             &nbsp;
@@ -28,7 +29,7 @@
         </form>
         <script type="text/javascript">
             function clearSearch() {
-                window.location = "[[@{/v1/shop/vegetables}]]";
+                window.location = "[[@{/v1/shop/orders}]]";
             }
         </script>
     </div>
@@ -54,5 +55,6 @@
             </tr>
         </table>
     </div>
+
 </body>
 </html>

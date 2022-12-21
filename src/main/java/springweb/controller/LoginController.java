@@ -25,6 +25,9 @@ public class LoginController {
 
     @GetMapping("/login")
     public String methodGetLogin() {
+        if (customerId != null) {
+            return String.format("redirect:/v1/shop/customers/%s", customerId);
+        }
         return "Login";
     }
 
@@ -44,5 +47,11 @@ public class LoginController {
     @GetMapping("")
     public String shop() {
         return "redirect:/v1/shop/vegetables/";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        customerId = null;
+        return "redirect:/v1/shop";
     }
 }
