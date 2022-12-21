@@ -5,6 +5,12 @@
     <title>Register</title>
 </head>
 <body>
+    <div class="vertical-menu">
+        <a href="/v1/shop" class="active">Home</a>
+        <a href="/v1/shop/login">Login</a>
+        <a href="/v1/shop/customers/register">Register</a>
+        <a href="#">Order</a>
+    </div>
     <div>Customer - Rigister</div>
     <form th:action="@{/v1/shop/customers/register}" th:object="${customer}" method="POST">
         <div class="row">
