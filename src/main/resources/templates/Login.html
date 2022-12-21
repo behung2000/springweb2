@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <div class="vertical-menu">
+        <a href="/v1/shop" class="active">Home</a>
+        <a href="/v1/shop/login">Login</a>
+        <a href="/v1/shop/customers/register">Register</a>
+        <a href="/v1/shop/orders">Order</a>
+    </div>
+    <form  method="get" action="/v1/shop/login/action">
+        <label>FULL NAME:</label>
+        <input type="text" name="fullName" id="fullName" size="50" th:value="${fullName}"/>
+        <br>
+        <label>PASSWORD:</label>
+        <input type="password" name="password" id="password" size="50" th:value="${password}"/>
+        <br>
+        <input type="submit" value="login" />
+    </form>
+</body>
+</html>

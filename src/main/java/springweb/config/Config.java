@@ -1,6 +1,8 @@
 package springweb.config;
 
+import springweb.repository.CategoryRepository;
 import springweb.repository.OrderedRepository;
+import springweb.services.CategoryService;
 import springweb.services.CustomerService;
 import springweb.repository.CustomerRepository;
 import springweb.repository.VegetableRepository;
@@ -28,5 +30,10 @@ public class Config {
     @Bean
     public OrderedService orderedService(final OrderedRepository orderedRepository, VegetableRepository vegetableRepository) {
         return new OrderedService(orderedRepository, vegetableRepository);
+    }
+
+    @Bean
+    public CategoryService categoryService(final CategoryRepository categoryRepository) {
+        return new CategoryService(categoryRepository);
     }
 }

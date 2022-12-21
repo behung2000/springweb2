@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Shop</title>
+</head>
+<body>
+    <div class="vertical-menu">
+        <a href="/v1/shop" class="active">Home</a>
+        <a href="/v1/shop/login">Login</a>
+        <a href="/v1/shop/customers/register">Register</a>
+        <a href="/v1/shop/orders">Order</a>
+    </div>
+    <div>
+        <h1><b>Search</b></h1>
+        <form method="get" action="/v1/shop/vegetables">
+            Filter name:        <input type="text" name="name" id="name" size="50" th:value="${name}" value="null"/>
+            &nbsp;
+            Filter bán chạy:    <input type="radio" name="banChay" id="banChay" size="50" th:value="true"/>
+            &nbsp;
+            Filter category:    <select id="categoryId" name="categoryId" th:value="${categoryId}">
+                                    <option th:each="i : ${categories}" th:value="${i.id}" th:utext="${i.name}" />
+                                </select>
+            &nbsp;
+            <input type="submit" value="Search" />
+            &nbsp;
+            <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+        </form>
+        <script type="text/javascript">
+            function clearSearch() {
+                window.location = "[[@{/v1/shop/vegetables}]]";
+            }
+        </script>
+    </div>
+    <div>
+        <h1>List vegetable</h1>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Unit</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Edit</th>
+            </tr>
+            <tr th:each ="row, state: ${data}">
+                <td th:utext="${state.count}">...</td>
+                <td th:utext="${row.name}">...</td>
+                <td th:utext="${row.unit}">...</td>
+                <td th:utext="${row.amount}">...</td>
+                <td th:utext="${row.price}">...</td>
+                <td><a th:href="'/v1/shop/orders/vegetableId/'+${row.id}+'/quantity/'+${1}">add 1 to order</a></td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

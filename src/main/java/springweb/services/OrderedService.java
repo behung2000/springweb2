@@ -40,10 +40,20 @@ public class OrderedService {
         BeanUtils.copyProperties(saved, orderDto);
         List<OrderDetailDto> orderDetailDtoList = toOrderedDetailList(saved.getOrderedDetails());
         if (orderDetailDtoList == null) {
+            orderedRepository.delete(saved);
             return null; // Sql action save has some problem so data orderedDetail has problem
         }
         orderDto.setOrderDetailDtoList(orderDetailDtoList);
+        updateVegetable(orderDetailDtoList);
         return orderDto;
+    }
+
+    private void updateVegetable(List<OrderDetailDto> orderDetailDtoList) {
+        for (OrderDetailDto orderDetailDto : orderDetailDtoList) {
+            Vegetable vegetable = vegetableRepository.findById(orderDetailDto.getVegetableId()).get();
+            vegetable.setAmount(vegetable.getAmount()-orderDetailDto.getQuantity());
+            vegetableRepository.save(vegetable);
+        }
     }
 
     /**
@@ -52,7 +62,7 @@ public class OrderedService {
      * @return Ordered
      */
     private Ordered toOrderedByCreateOrder(CreateOrder createOrder) {
-        if (!createOrder.validate()) {
+        if (createOrder.validate() == false) {
             return null;
         }
         Ordered ordered = Ordered.builder().build();
@@ -107,21 +117,19 @@ public class OrderedService {
      */
     private List<OrderDetailDto> toOrderedDetailList(Set<OrderedDetail> orderedDetails) {
         List<OrderDetailDto> orderDetailDtoList = new ArrayList<>();
-        Integer i = 1;
         for (OrderedDetail orderedDetail : orderedDetails) {
             Vegetable vegetable = vegetableRepository.findById(orderedDetail.getVegetableId()).orElse(null);
             if (vegetable == null) {
                 return null;
             }
             orderDetailDtoList.add(OrderDetailDto.builder()
-                .id(i)
+                .id(orderedDetail.getId())
                 .vegetableId(vegetable.getId())
                 .vegetableName(vegetable.getName())
                 .quantity(orderedDetail.getQuantity())
                 .price(orderedDetail.getPrice())
                 .build()
             );
-            i++;
         }
         return orderDetailDtoList;
     }

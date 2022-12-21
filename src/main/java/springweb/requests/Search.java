@@ -1,6 +1,7 @@
 package springweb.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.Gson;
 import lombok.*;
 
 @Setter
@@ -18,8 +19,15 @@ public class Search {
     @JsonProperty("name")
     private String name;
 
+    public void initInput() {
+        if (banChay == null) {
+            banChay = false;
+        }
+    }
+
     public Integer checkInput() {
-        if (banChay == true) {
+        if (banChay == true)
+        {
             if (categoryId != null) {
                 if (name != null) {
                     return 1;
@@ -41,5 +49,9 @@ public class Search {
             return 7;
         }
         return 0;
+    }
+
+    public String toString() {
+        return new Gson().toJson(this);
     }
 }

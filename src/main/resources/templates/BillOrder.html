@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bill Order</title>
+</head>
+<body>
+    <div>
+        <h1>Thong tin address</h1>
+        <br>
+        Full Name: <p th:utext="${customer.getFullName()}">..</p>
+        <br>
+        Address: <p th:utext="${customer.getAddress()}">..</p>
+        <br>
+        City: <p th:utext="${customer.getCity()}">..</p>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>STT</th>
+                <th>Name</th>
+                <th>quantity</th>
+                <th>price</th>
+            </tr>
+            <tr th:each ="row, state: ${orderedList}">
+                <td th:utext="${state.count}">...</td>
+                <td th:utext="${row.vegetableName}">...</td>
+                <td th:utext="${row.quantity}">...</td>
+                <td th:utext="${row.price}">...</td>
+            </tr>
+        </table>
+        Total: <p th:utext="${orderedTotal}">..</p>
+    </div>
+    <div>
+        <form action="/v1/shop" method="get">
+            <button>Go back shop</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package springweb.requests;
+package springweb.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -8,16 +8,10 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductOrder {
+public class CategoryDto {
     @JsonProperty("id")
     private Integer id;
 
     @JsonProperty("name")
     private String name;
-
-    @JsonProperty("quantity")
-    private Integer quantity;
-
-    @JsonProperty("price")
-    private Double price;
 }

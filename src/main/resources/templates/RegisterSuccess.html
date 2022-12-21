@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RegisterSuccess</title>
+</head>
+<body>
+    <div class="vertical-menu">
+        <a href="/v1/shop" class="active">Home</a>
+        <a href="/v1/shop/login">Login</a>
+        <a href="/v1/shop/customers/register">Register</a>
+        <a href="/v1/shop/orders">Order</a>
+        <a href="/v1/shop/logout">logout</a>
+    </div>
+    <h1>Success</h1>
+    <div>
+        ID: <p th:utext="${data.getId()}">...</p>
+    </div>
+    <div>
+        Full Name: <p th:utext="${data.getFullName()}">...</p>
+    </div>
+    <div>
+        Password: <p th:utext="${data.getPassword()}">...</p>
+    </div>
+    <div>
+        Address: <p th:utext="${data.getAddress()}">...</p>
+    </div>
+    <div>
+        City: <p th:utext="${data.getCity()}">...</p>
+    </div>
+</body>
+</html>

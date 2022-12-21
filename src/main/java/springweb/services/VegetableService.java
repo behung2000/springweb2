@@ -143,5 +143,10 @@ public class VegetableService {
         }
     }
 
-    
+    public VegetableDto findById(Integer vegetableId) {
+        Vegetable vegetable = vegetableRepository.findById(vegetableId).get();
+        VegetableDto vegetableDto = VegetableDto.builder().build();
+        BeanUtils.copyProperties(vegetable, vegetableDto);
+        return vegetableDto;
+    }
 }

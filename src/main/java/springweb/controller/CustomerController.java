@@ -1,34 +1,57 @@
 package springweb.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import springweb.dto.CustomerDto;
+import springweb.services.CustomerService;
 
+@Slf4j
 @Controller
 @RequestMapping("v1/shop/customers")
 public class CustomerController {
-   /*
-    @Autowired
-    private CustomerRepository customersReposity;
+    private CustomerService service;
 
-    
-    
-    @GetMapping("/customer/add")
+    public CustomerController(CustomerService service) {
+        this.service = service;
+    }
+
+    @GetMapping("/register")
     public String register(Model m)
     {
-        Customer cus = new Customer();
-        m.addAttribute("customer", cus);
-        return "customer_register";
-        
+        if (LoginController.getLogin() != null) {
+            return "redirect:/v1/shop/customers/"+LoginController.getLogin();
+        }
+        CustomerDto customerDto = new CustomerDto();
+        m.addAttribute("customer", customerDto);
+        return "CustomerRegister";
     }
-    @PostMapping("/customer/save")
-    public String save(Model model, @ModelAttribute("customer") Customer customer)
+
+    @PostMapping("/register")
+    public String save(Model model, @ModelAttribute("customer") CustomerDto customerDto)
     {
-        
-        customersReposity.save(customer);
-        
-        return "redirect:/customer/all";
-        
+        log.info(customerDto.toString());
+        CustomerDto response = service.save(customerDto);
+        if (response != null && response.getId() != null) {
+            return RegisterSuccess(model, response);
+        }
+        return "RegisterFail";
     }
+
+    private String RegisterSuccess(Model model, CustomerDto customerDto) {
+        model.addAttribute("data", customerDto);
+        return "RegisterSuccess";
+    }
+
+    @GetMapping("/{id}")
+    public String findOne(Model model, @PathVariable Integer id) {
+        CustomerDto customerDto = service.findById(id);
+        return RegisterSuccess(model, customerDto);
+    }
+
+
+    /*
     @PostMapping("/customer/update")
     public String update(Model model, @ModelAttribute("customer") Customer customer)
     {

@@ -20,12 +20,14 @@ public class CustomerService {
      * @param login
      * @return boolean
      */
-    public boolean checkLogin(final Login login) {
+    public CustomerDto checkLogin(final Login login) {
         Customer customer = customerRepository.findByFullNameAndPassword(login.getFullName(), login.getPassword()).orElse(null);
         if (customer == null) {
-            return false;
+            return null;
         }
-        return true;
+        CustomerDto customerDto = CustomerDto.builder().build();
+        BeanUtils.copyProperties(customer, customerDto);
+        return customerDto;
     }
 
     /**
@@ -38,8 +40,14 @@ public class CustomerService {
         Customer customer = Customer.builder().build();
         BeanUtils.copyProperties(customerDto, customer);
         Customer saved = customerRepository.save(customer);
-        CustomerDto response = CustomerDto.builder().build();
-        BeanUtils.copyProperties(saved, response);
-        return response;
+        BeanUtils.copyProperties(saved, customerDto);
+        return customerDto;
+    }
+
+    public CustomerDto findById(Integer id) {
+        Customer customer = customerRepository.findById(id).get();
+        CustomerDto customerDto = CustomerDto.builder().build();
+        BeanUtils.copyProperties(customer, customerDto);
+        return customerDto;
     }
 }
