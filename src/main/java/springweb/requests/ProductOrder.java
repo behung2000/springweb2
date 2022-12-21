@@ -12,6 +12,12 @@ public class ProductOrder {
     @JsonProperty("id")
     private Integer id;
 
+    @JsonProperty("name")
+    private String name;
+
     @JsonProperty("quantity")
     private Integer quantity;
+
+    @JsonProperty("price")
+    private Double price;
 }

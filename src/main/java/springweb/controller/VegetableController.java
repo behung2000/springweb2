@@ -1,6 +1,7 @@
 package springweb.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 import springweb.dto.CategoryDto;
 import springweb.dto.VegetableDto;
 

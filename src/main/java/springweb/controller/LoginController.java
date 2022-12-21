@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import springweb.dto.CustomerDto;
 import springweb.requests.Login;
 import springweb.services.CustomerService;
 
@@ -12,21 +13,21 @@ import springweb.services.CustomerService;
 @Controller
 @RequestMapping("v1/shop")
 public class LoginController {
-    private static Integer customerId = null;
+    private static CustomerDto customerLogin = null;
     private CustomerService service;
 
     public LoginController(CustomerService service) {
         this.service = service;
     }
 
-    public static Integer getLogin() {
-        return customerId;
+    public static CustomerDto getLogin() {
+        return customerLogin;
     }
 
     @GetMapping("/login")
     public String methodGetLogin() {
-        if (customerId != null) {
-            return String.format("redirect:/v1/shop/customers/%s", customerId);
+        if (customerLogin != null) {
+            return String.format("redirect:/v1/shop/customers/%s", customerLogin.getId());
         }
         return "Login";
     }
@@ -36,9 +37,10 @@ public class LoginController {
         model.addAttribute("fullName", login.getFullName());
         model.addAttribute("password", login.getPassword());
         log.info(login.toString());
-        Integer id = service.checkLogin(login);
-        if (id != null) {
-            customerId = id;
+        CustomerDto customerDto = service.checkLogin(login);
+        if (customerDto != null) {
+            customerLogin = customerDto;
+            OrderController.createOrderList();
             return "redirect:/v1/shop/vegetables";
         }
         return "LoginFail";
@@ -51,7 +53,7 @@ public class LoginController {
 
     @GetMapping("/logout")
     public String logout() {
-        customerId = null;
+        customerLogin = null;
         return "redirect:/v1/shop";
     }
 }

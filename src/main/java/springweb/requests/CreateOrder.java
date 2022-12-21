@@ -1,6 +1,7 @@
 package springweb.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.Gson;
 import lombok.*;
 
 import java.util.List;
@@ -28,5 +29,9 @@ public class CreateOrder {
             return false;
         }
         return true;
+    }
+
+    public String toString() {
+        return new Gson().toJson(this);
     }
 }

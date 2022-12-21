@@ -20,12 +20,14 @@ public class CustomerService {
      * @param login
      * @return boolean
      */
-    public Integer checkLogin(final Login login) {
+    public CustomerDto checkLogin(final Login login) {
         Customer customer = customerRepository.findByFullNameAndPassword(login.getFullName(), login.getPassword()).orElse(null);
         if (customer == null) {
             return null;
         }
-        return customer.getId();
+        CustomerDto customerDto = CustomerDto.builder().build();
+        BeanUtils.copyProperties(customer, customerDto);
+        return customerDto;
     }
 
     /**

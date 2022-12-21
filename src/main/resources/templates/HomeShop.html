@@ -51,8 +51,10 @@
                 <td th:utext="${row.unit}">...</td>
                 <td th:utext="${row.amount}">...</td>
                 <td th:utext="${row.price}">...</td>
+                <td><a th:href="'/v1/shop/orders/vegetableId/'+${row.id}+'/quantity/'+${1}">add 1 to order</a></td>
             </tr>
         </table>
     </div>
+
 </body>
 </html>

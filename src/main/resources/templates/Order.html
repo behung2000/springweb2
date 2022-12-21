@@ -13,48 +13,33 @@
         <a href="/v1/shop/logout">logout</a>
     </div>
     <div>
-        <h1><b>Search</b></h1>
-        <form method="get" action="/v1/shop/orders">
-            Filter name:        <input type="text" name="name" id="name" size="50" th:value="${name}" value="null"/>
-            &nbsp;
-            Filter bán chạy:    <input type="radio" name="banChay" id="banChay" size="50" th:value="true"/>
-            &nbsp;
-            Filter category:    <select id="categoryId" name="categoryId" th:value="${categoryId}">
-            <option th:each="i : ${categories}" th:value="${i.id}" th:utext="${i.name}" />
-        </select>
-            &nbsp;
-            <input type="submit" value="Search" />
-            &nbsp;
-            <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
-        </form>
-        <script type="text/javascript">
-            function clearSearch() {
-                window.location = "[[@{/v1/shop/orders}]]";
-            }
-        </script>
-    </div>
-    <div>
-        <h1>List vegetable</h1>
+        <h1>Order list</h1>
     </div>
     <div>
         <table>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Unit</th>
-                <th>Amount</th>
-                <th>Price</th>
-                <th>Edit</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Remove</th>
             </tr>
-            <tr th:each ="row, state: ${data}">
+            <tr th:each ="row, state : ${orderList}">
                 <td th:utext="${state.count}">...</td>
                 <td th:utext="${row.name}">...</td>
-                <td th:utext="${row.unit}">...</td>
-                <td th:utext="${row.amount}">...</td>
+                <td th:utext="${row.quantity}">...</td>
                 <td th:utext="${row.price}">...</td>
+                <td><a th:href="'/v1/shop/orders/'+${row.id}">remove</a></td>
             </tr>
         </table>
     </div>
-
+    <div>
+        Total all: <p th:utext="${total}">..</p>
+    </div>
+    <div>
+        <form th:action="@{/v1/shop/orders}"  method="POST">
+            <button>Order</button>
+        </form>
+    </div>
 </body>
 </html>
