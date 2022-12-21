@@ -11,7 +11,6 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Entity
 @Table(name ="ordered")
 public class Ordered {

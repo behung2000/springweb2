@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 20, 2022 lúc 07:43 AM
+-- Thời gian đã tạo: Th12 21, 2022 lúc 07:09 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -64,7 +64,8 @@ INSERT INTO `customer` (`id`, `password`, `full_name`, `address`, `city`) VALUES
 (1, 'Abcd1234', 'John Smith', '30 Broadway', 'London'),
 (2, 'Abcd1234', 'Jonny English', '99 River View', 'Reading'),
 (3, 'Abcd1234', 'Elizabeth', '23 Buckinghamshire', 'York'),
-(4, 'Abcd1234', 'Beatrix', '66 Royal Crescent', 'Bath');
+(4, 'Abcd1234', 'Beatrix', '66 Royal Crescent', 'Bath'),
+(10, 'Abcd1234', 'a', '681 Nguyễn Trãi P11 Q5, Quận 5', 'Tp.Hồ Chí Minh');
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,7 @@ CREATE TABLE `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(1);
+(11);
 
 -- --------------------------------------------------------
 

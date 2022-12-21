@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Entity
 @Table(name ="ordered_detail")
 public class OrderedDetail {

@@ -38,8 +38,7 @@ public class CustomerService {
         Customer customer = Customer.builder().build();
         BeanUtils.copyProperties(customerDto, customer);
         Customer saved = customerRepository.save(customer);
-        CustomerDto response = CustomerDto.builder().build();
-        BeanUtils.copyProperties(saved, response);
-        return response;
+        BeanUtils.copyProperties(saved, customerDto);
+        return customerDto;
     }
 }

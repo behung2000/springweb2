@@ -38,7 +38,7 @@ public class VegetableController {
         m.addAttribute("banChay", search.getBanChay());
         List<VegetableDto> list = service.search(search);
         m.addAttribute("data", list);
-        return "homeshop";
+        return "HomeShop";
     }
     
 }

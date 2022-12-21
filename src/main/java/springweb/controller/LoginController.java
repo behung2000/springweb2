@@ -1,7 +1,6 @@
 package springweb.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +25,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String methodGetLogin() {
-        return "login";
+        return "Login";
     }
 
     @GetMapping("/login/action")
@@ -39,6 +38,11 @@ public class LoginController {
             customerId = id;
             return "redirect:/v1/shop/vegetables";
         }
-        return "loginfail";
+        return "LoginFail";
+    }
+
+    @GetMapping("")
+    public String shop() {
+        return "redirect:/v1/shop/vegetables/";
     }
 }
