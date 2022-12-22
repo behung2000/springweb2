@@ -46,6 +46,9 @@ public class CustomerController {
 
     @GetMapping("/{id}")
     public String findOne(Model model, @PathVariable Integer id) {
+        if (LoginController.getLogin() == null) {
+            return "LoginToOrder";
+        }
         CustomerDto customerDto = service.findById(id);
         return RegisterSuccess(model, customerDto);
     }

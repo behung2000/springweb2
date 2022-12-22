@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 22, 2022 lúc 09:44 AM
+-- Thời gian đã tạo: Th12 22, 2022 lúc 12:59 PM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -82,7 +82,7 @@ CREATE TABLE `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(36);
+(40);
 
 -- --------------------------------------------------------
 
@@ -118,7 +118,9 @@ INSERT INTO `ordered` (`id`, `customer_id`, `date_created`, `total`, `note`) VAL
 (28, 10, '2022-12-22', 30000, ''),
 (30, 10, '2022-12-22', 30000, ''),
 (32, 10, '2022-12-22', 15000, ''),
-(34, 10, '2022-12-22', 80000, '');
+(34, 10, '2022-12-22', 80000, ''),
+(36, 10, '2022-12-22', 80000, ''),
+(38, 10, '2022-12-22', 150000, '');
 
 -- --------------------------------------------------------
 
@@ -161,7 +163,9 @@ INSERT INTO `ordered_detail` (`id`, `ordered_id`, `vegetable_id`, `quantity`, `p
 (29, 28, 1, 1, 30000),
 (31, 30, 1, 1, 30000),
 (33, 32, 7, 1, 15000),
-(35, 34, 4, 1, 80000);
+(35, 34, 4, 1, 80000),
+(37, 36, 4, 1, 80000),
+(39, 38, 3, 1, 150000);
 
 -- --------------------------------------------------------
 
@@ -186,8 +190,8 @@ CREATE TABLE `vegetable` (
 INSERT INTO `vegetable` (`id`, `category_id`, `name`, `unit`, `amount`, `image`, `price`) VALUES
 (1, 1, 'Tomato', 'kg', 95, 'images/tomato.jpg', 30000),
 (2, 1, 'potato', 'kg', 150, 'images/potato.jpg', 35000),
-(3, 1, 'Apple', 'bag', 50, 'images/apple.jpg', 150000),
-(4, 1, 'Water melon', 'per fruit', 18, 'images/watermelon.jpg', 80000),
+(3, 1, 'Apple', 'bag', 49, 'images/apple.jpg', 150000),
+(4, 1, 'Water melon', 'per fruit', 17, 'images/watermelon.jpg', 80000),
 (5, 2, ' broccoli', 'kg', 50, 'images/broccoli.jpg', 35000),
 (6, 2, 'celery', 'kg', 78, 'images/celery.jpg', 40000),
 (7, 1, ' spring onion', 'bunch', 47, 'images/springonion.jpg', 15000);

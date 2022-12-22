@@ -2,31 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>RegisterSuccess</title>
+    <title>Register Success</title>
 </head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous">
+</script>
 <body>
-    <div class="vertical-menu">
-        <a href="/v1/shop" class="active">Home</a>
-        <a href="/v1/shop/login">Login</a>
-        <a href="/v1/shop/customers/register">Register</a>
-        <a href="/v1/shop/orders">Order</a>
-        <a href="/v1/shop/logout">logout</a>
+<div class="container-fluid">
+    <div class="vertical-menu row align-items-center">
+        <div class="col">
+            <a href="/v1/shop" class="active"><b style="font-size: x-large">Home</b></a>
+            <a href="/v1/shop/login"><b style="font-size: x-large">Login</b></a>
+            <a href="/v1/shop/customers/register"><b style="font-size: x-large">Register</b></a>
+            <a href="/v1/shop/orders"><b style="font-size: x-large">Order</b></a>
+            <a href="/v1/shop/logout"><b style="font-size: x-large">logout</b></a>
+        </div>
     </div>
     <h1>Success</h1>
-    <div>
-        ID: <p th:utext="${data.getId()}">...</p>
+    <div class="row align-items-center">
+        <table>
+            <tr>
+                <th>ID:</th>
+                <th th:utext="${data.getId()}"></th>
+            </tr>
+            <tr>
+                <th>Full Name:</th>
+                <th th:utext="${data.getFullName()}"></th>
+            </tr>
+            <tr>
+                <th>Password:</th>
+                <th th:utext="${data.getPassword()}"></th>
+            </tr>
+            <tr>
+                <th>Address:</th>
+                <th th:utext="${data.getAddress()}"></th>
+            </tr>
+            <tr>
+                <th>City:</th>
+                <th th:utext="${data.getCity()}"></th>
+            </tr>
+        </table>
     </div>
-    <div>
-        Full Name: <p th:utext="${data.getFullName()}">...</p>
-    </div>
-    <div>
-        Password: <p th:utext="${data.getPassword()}">...</p>
-    </div>
-    <div>
-        Address: <p th:utext="${data.getAddress()}">...</p>
-    </div>
-    <div>
-        City: <p th:utext="${data.getCity()}">...</p>
-    </div>
+</div>
 </body>
 </html>

@@ -35,32 +35,6 @@ public class OrderController {
         totalAllOrderList = 0D;
     }
 
-    public static void addProduct(VegetableDto vegetableDto , Integer quantity) {
-        ProductOrder productOrder = orderList.stream()
-                .filter(p -> p.getId() == vegetableDto.getId())
-                .findAny()
-                .orElse(null);
-        if (productOrder == null) {
-            productOrder = ProductOrder.builder().build();
-            BeanUtils.copyProperties(vegetableDto, productOrder);
-            productOrder.setQuantity(quantity);
-            Double total = vegetableDto.getPrice() * quantity;
-            productOrder.setPrice(total);
-            totalAllOrderList = totalAllOrderList + total;
-            orderList.add(productOrder);
-        }
-        else {
-            int totalQuantity = productOrder.getQuantity() + quantity;
-            Double total = vegetableDto.getPrice() * totalQuantity;
-            productOrder.setPrice(total);
-            productOrder.setQuantity(totalQuantity);
-        }
-    }
-
-    public static void remove(ProductOrder productOrder) {
-        orderList.remove(productOrder);
-    }
-
     @GetMapping("")
     public String orderHome(Model model) {
         if (LoginController.getLogin() == null) {
@@ -75,6 +49,9 @@ public class OrderController {
     public String order(Model model) {
         if (LoginController.getLogin() == null) {
             return "LoginToOrder";
+        }
+        if (orderList == null || orderList.isEmpty()) {
+            return "OrderFail";
         }
         CreateOrder createOrder = CreateOrder.builder()
                 .id(LoginController.getLogin().getId())
