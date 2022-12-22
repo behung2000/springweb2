@@ -37,11 +37,15 @@ public class CustomerService {
      * @return CustomerDto
      */
     public CustomerDto save(CustomerDto customerDto) {
-        Customer customer = Customer.builder().build();
-        BeanUtils.copyProperties(customerDto, customer);
-        Customer saved = customerRepository.save(customer);
-        BeanUtils.copyProperties(saved, customerDto);
-        return customerDto;
+        CustomerDto check = checkLogin(customerDto);
+        if (check == null) {
+            Customer customer = Customer.builder().build();
+            BeanUtils.copyProperties(customerDto, customer);
+            Customer saved = customerRepository.save(customer);
+            BeanUtils.copyProperties(saved, customerDto);
+            return customerDto;
+        }
+        return null;
     }
 
     public CustomerDto findById(Integer id) {

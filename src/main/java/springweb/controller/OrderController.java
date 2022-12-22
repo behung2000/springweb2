@@ -5,6 +5,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import springweb.dto.CustomerDto;
 import springweb.dto.OrderDto;
 import springweb.dto.VegetableDto;
 import springweb.requests.CreateOrder;
@@ -89,8 +90,8 @@ public class OrderController {
         return "BillOrder";
     }
 
-    @GetMapping("/vegetableId/{vegetableId}/quantity/{quantity}")
-    public String addProductOrder(@PathVariable Integer vegetableId, @PathVariable Integer quantity) {
+    @PostMapping("/vegetableId/{vegetableId}")
+    public String addProductOrder(@PathVariable Integer vegetableId, @ModelAttribute("quantity") Integer quantity) {
         if (LoginController.getLogin() != null) {
             ProductOrder productOrder = orderList.stream()
                     .filter(p -> p.getId() == vegetableId)

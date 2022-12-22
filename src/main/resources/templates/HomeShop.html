@@ -51,7 +51,13 @@
                 <td th:utext="${row.unit}">...</td>
                 <td th:utext="${row.amount}">...</td>
                 <td th:utext="${row.price}">...</td>
-                <td><a th:href="'/v1/shop/orders/vegetableId/'+${row.id}+'/quantity/'+${1}">add 1 to order</a></td>
+                <td>
+                    <!-- a th:href="'/v1/shop/orders/vegetableId/'+${row.id}+'/quantity/'+${1}">add 1 to order</a -->
+                    <form th:action="@{'/v1/shop/orders/vegetableId/'+${row.id}}" method="POST">
+                        <input type="number" min="1" name="quantity" id="quantity" size="50" th:object="${quantity}" value="1">
+                        <button>add to order</button>
+                    </form>
+                </td>
             </tr>
         </table>
     </div>

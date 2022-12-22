@@ -21,7 +21,7 @@ public class CustomerController {
     public String register(Model m)
     {
         if (LoginController.getLogin() != null) {
-            return "redirect:/v1/shop/customers/"+LoginController.getLogin();
+            return "redirect:/v1/shop/customers/"+LoginController.getLogin().getId();
         }
         CustomerDto customerDto = new CustomerDto();
         m.addAttribute("customer", customerDto);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 21, 2022 lúc 02:10 PM
+-- Thời gian đã tạo: Th12 22, 2022 lúc 09:44 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -82,7 +82,7 @@ CREATE TABLE `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(23);
+(36);
 
 -- --------------------------------------------------------
 
@@ -114,7 +114,11 @@ INSERT INTO `ordered` (`id`, `customer_id`, `date_created`, `total`, `note`) VAL
 (14, 10, '2022-12-21', 65000, ''),
 (17, 10, '2022-12-21', 30000, ''),
 (19, 10, '2022-12-21', 30000, ''),
-(21, 10, '2022-12-21', 15000, '');
+(21, 10, '2022-12-21', 15000, ''),
+(28, 10, '2022-12-22', 30000, ''),
+(30, 10, '2022-12-22', 30000, ''),
+(32, 10, '2022-12-22', 15000, ''),
+(34, 10, '2022-12-22', 80000, '');
 
 -- --------------------------------------------------------
 
@@ -153,7 +157,11 @@ INSERT INTO `ordered_detail` (`id`, `ordered_id`, `vegetable_id`, `quantity`, `p
 (16, 14, 1, 1, 30000),
 (18, 17, 1, 1, 30000),
 (20, 19, 1, 1, 30000),
-(22, 21, 7, 1, 15000);
+(22, 21, 7, 1, 15000),
+(29, 28, 1, 1, 30000),
+(31, 30, 1, 1, 30000),
+(33, 32, 7, 1, 15000),
+(35, 34, 4, 1, 80000);
 
 -- --------------------------------------------------------
 
@@ -176,13 +184,13 @@ CREATE TABLE `vegetable` (
 --
 
 INSERT INTO `vegetable` (`id`, `category_id`, `name`, `unit`, `amount`, `image`, `price`) VALUES
-(1, 1, 'Tomato', 'kg', 97, 'images/tomato.jpg', 30000),
+(1, 1, 'Tomato', 'kg', 95, 'images/tomato.jpg', 30000),
 (2, 1, 'potato', 'kg', 150, 'images/potato.jpg', 35000),
 (3, 1, 'Apple', 'bag', 50, 'images/apple.jpg', 150000),
-(4, 1, 'Water melon', 'per fruit', 19, 'images/watermelon.jpg', 80000),
+(4, 1, 'Water melon', 'per fruit', 18, 'images/watermelon.jpg', 80000),
 (5, 2, ' broccoli', 'kg', 50, 'images/broccoli.jpg', 35000),
 (6, 2, 'celery', 'kg', 78, 'images/celery.jpg', 40000),
-(7, 1, ' spring onion', 'bunch', 48, 'images/springonion.jpg', 15000);
+(7, 1, ' spring onion', 'bunch', 47, 'images/springonion.jpg', 15000);
 
 --
 -- Chỉ mục cho các bảng đã đổ

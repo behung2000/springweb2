@@ -1,6 +1,7 @@
 package springweb.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.Gson;
 import lombok.*;
 
 @Setter
@@ -29,4 +30,8 @@ public class VegetableDto {
 
     @JsonProperty("catagoryId")
     private Integer catagoryId;
+
+    public String toString() {
+        return new Gson().toJson(this);
+    }
 }
